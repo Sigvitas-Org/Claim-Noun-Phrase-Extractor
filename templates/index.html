@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Text Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #3494E6, #EC6EAD);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .text-areas-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .text-area-container {
+            width: 48%;
+            /* Adjust for spacing */
+        }
+
+        textarea {
+            width: 98%;
+            height: 400px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .textarea-heading {
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        #input_text {
+            float: left;
+        }
+
+        #noun_phrases {
+            float: right;
+            width: 98%;
+            height: 400px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-left: 3em;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .analyze-button-container {
+            text-align: center;
+        }
+
+        .analyze-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .analyze-button:hover {
+            background-color: #45a049;
+        }
+        /* .refresh-button {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <h1>Text Analysis</h1>
+
+    <form method="POST" action="/analyze">
+        <div class="text-areas-container">
+            <div class="text-area-container">
+                <p class="textarea-heading">Input Claim Text</p>
+                <textarea name="input_text" id="input_text" placeholder="Enter text here">{{ input_text }}</textarea>
+            </div>
+            <div class="text-area-container">
+                <p class="textarea-heading">Noun Phrases</p>
+                <textarea id="noun_phrases" readonly>{{ noun_phrases | join('\n') }}</textarea>
+            </div>
+        </div>
+        <div class="analyze-button-container">
+            <button type="submit" class="analyze-button">Analyze</button>
+            <button type="button" class="analyze-button refresh-button" onclick="refreshPage()">Refresh</button>
+        </div>
+    </form>
+
+    <script>
+        function refreshPage() {
+            window.location.href = 'http://127.0.0.1:5000/'; 
+        }
+        var analyzeButton = document.querySelector('.analyze-button');
+        var refreshButton = document.querySelector('.refresh-button');
+
+        analyzeButton.addEventListener('click', function () {
+            refreshButton.style.display = 'inline-block';
+        });
+    </script>
+</body>
+</html>
