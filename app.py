@@ -19,4 +19,4 @@ def analyze():
         return render_template('index.html', input_text=input_text, noun_phrases=noun_phrases)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
